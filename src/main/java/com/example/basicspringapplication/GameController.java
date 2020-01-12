@@ -1,8 +1,8 @@
 package com.example.basicspringapplication;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,8 +23,8 @@ public class GameController {
 	
 	
 	@GetMapping("/searchGameByTitle")
-	public List<Game> searchGames(@RequestParam("title") String title){
-		return repository.findByTitleContaining(title);
+	public Page<Game> searchGames(@RequestParam("title") String title, Pageable pageable){
+		return repository.findByTitleContaining(title, pageable);
 	}
 	
 }
